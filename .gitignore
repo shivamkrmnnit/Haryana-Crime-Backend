@@ -1,0 +1,65 @@
+# --------------------
+# Node dependencies
+# --------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# --------------------
+# Environment variables
+# --------------------
+.env
+.env.local
+.env.development
+.env.production
+
+# --------------------
+# Prisma
+# --------------------
+prisma/migrations/
+prisma/dev.db
+prisma/dev.db-journal
+
+# --------------------
+# Logs
+# --------------------
+logs/
+*.log
+
+# --------------------
+# OS files
+# --------------------
+.DS_Store
+Thumbs.db
+
+# --------------------
+# Build output
+# --------------------
+dist/
+build/
+
+# --------------------
+# Uploads / temp files
+# --------------------
+uploads/
+tmp/
+temp/
+
+# --------------------
+# IDE / Editor
+# --------------------
+.vscode/
+.idea/
+*.swp
+
+# --------------------
+# Test / Coverage
+# --------------------
+coverage/
+
+# --------------------
+# Optional (if using Supabase locally)
+# --------------------
+.supabase/

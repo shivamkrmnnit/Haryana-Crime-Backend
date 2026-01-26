@@ -1,0 +1,21 @@
+import express from "express";
+import cors from "cors";
+import adminAuthRoutes from "./modules/admin/admin-auth.routes.js";
+import userAuthRoutes from "./modules/user/user-auth.routes.js";
+import uploadRoutes from "./modules/communication/upload.routes.js";  // Add this
+
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+
+// Admin auth routes
+app.use("/api/v1/admin", adminAuthRoutes);
+
+// User auth routes
+app.use("/api/v1/user", userAuthRoutes);
+
+// Upload routes
+app.use("/api/v1/upload", uploadRoutes);  // Add this
+
+export default app;
