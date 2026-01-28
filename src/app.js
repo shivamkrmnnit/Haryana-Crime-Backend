@@ -2,7 +2,8 @@ import express from "express";
 import cors from "cors";
 import adminAuthRoutes from "./modules/admin/admin-auth.routes.js";
 import userAuthRoutes from "./modules/user/user-auth.routes.js";
-import uploadRoutes from "./modules/communication/upload.routes.js";  // Add this
+import uploadRoutes from "./modules/communication/upload.routes.js";
+import newRoutes from "./modules/news/event.routes.js";
 
 const app = express();
 
@@ -17,5 +18,7 @@ app.use("/api/v1/user", userAuthRoutes);
 
 // Upload routes
 app.use("/api/v1/upload", uploadRoutes);  // Add this
+// News event routes
+app.use("/api/v1/admin/events", newRoutes);
 
 export default app;
