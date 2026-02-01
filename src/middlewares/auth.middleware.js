@@ -1,6 +1,6 @@
-import { supabase } from "../config/supabase-client.js";
+import { supabase ,supabaseAnon } from "../config/supabase-client.js";
 
-/**
+/*
  * =========================
  * SUPABASE JWT AUTH MIDDLEWARE
  * =========================
@@ -9,7 +9,7 @@ export const supabaseAuth = async (req, res, next) => {
   try {
     const authHeader = req.headers.authorization;
 
-    if (!authHeader || !authHeader.startsWith("Beamer ")) {
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
       return res.status(401).json({
         success: false,
         message: "Authorization token missing",
@@ -30,7 +30,6 @@ export const supabaseAuth = async (req, res, next) => {
       });
     }
 
-    // Attach user to request
     req.user = {
       id: user.id,
       email: user.email,

@@ -26,8 +26,6 @@ const upload = multer({
       "application/pdf",
       "application/msword",
       "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-      "video/mp4",
-      "video/quicktime",
     ];
 
     if (allowedTypes.includes(file.mimetype)) {
