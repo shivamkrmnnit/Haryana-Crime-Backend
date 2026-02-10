@@ -1,4 +1,4 @@
-import { supabase ,supabaseAnon } from "../config/supabase-client.js";
+import { supabase ,supabasePublic } from "../config/supabase.js";
 
 /*
  * =========================
@@ -22,6 +22,7 @@ export const supabaseAuth = async (req, res, next) => {
       data: { user },
       error,
     } = await supabase.auth.getUser(token);
+    console.log("data",user);
 
     if (error || !user) {
       return res.status(401).json({
@@ -33,7 +34,7 @@ export const supabaseAuth = async (req, res, next) => {
     req.user = {
       id: user.id,
       email: user.email,
-      role: user.role || "user",
+      role: user.user_metadata?.role || "user",
     };
 
     next();
@@ -45,6 +46,26 @@ export const supabaseAuth = async (req, res, next) => {
     });
   }
 };
+
+export const adminOnly = (req, res, next) => {
+  if (!req.user) {
+    return res.status(401).json({
+      success: false,
+      message: "Unauthorized",
+    });
+  }
+
+  if (req.user.role !== "admin") {
+    return res.status(403).json({
+      success: false,
+      message: "Admin access only",
+    });
+  }
+
+  next();
+};
+
+
 
 
 /**
@@ -58,7 +79,7 @@ export const optionalAuth = async (req, res, next) => {
       const token = authHeader.split(" ")[1];
       const {
         data: { user },
-      } = await supabaseAnon.auth.getUser(token);
+      } = await supabasePublic.auth.getUser(token);
 
       if (user) {
         req.user = {
