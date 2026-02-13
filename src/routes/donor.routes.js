@@ -18,11 +18,8 @@ router.get("/", getAllDonors);
 router.get("/:id", getDonorById);
 
 // 🔐 Protected Routes (Optional)
- router.put("/:id", supabaseAuth, updateDonor);
+ router.put("/:id", supabaseAuth, updateDonor);  //not working
  router.delete("/:id", supabaseAuth, deleteDonor);
 
-// If you want open update/delete, use:
-// router.put("/:id", updateDonor);
-// router.delete("/:id", deleteDonor);
 
 export default router;
